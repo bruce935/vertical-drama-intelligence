@@ -1,0 +1,30 @@
+﻿# Local / backup files
+SKILL-before-*.md
+SKILL-v04-before-*.md
+opencode-before-*.json
+
+# Local model/runtime files
+Modelfile-*
+.opencode/
+
+# Temporary / runtime test artifacts
+test-runs/*.txt
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+
+# Eval development backups
+evals/evals-before-*.json
+evals/evals-v04-before-*.json
+
+# Validator development backups
+scripts/validate-v04-before-*.ps1
+
+# Temporary regression extracts
+test-runs/*-rules-extract.md
+
+# Local OpenCode runtime configuration
+opencode.json

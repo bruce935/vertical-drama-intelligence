@@ -1,0 +1,544 @@
+﻿{
+    "name":  "vertical-drama-intelligence",
+    "version":  "0.4.1",
+    "description":  "Evaluation suite for story intelligence, continuity reasoning, evidence integrity, production contracts, scoped QC, and production readiness.",
+    "score_scale":  100,
+    "pass_score":  80,
+    "weights":  {
+                    "story_intelligence":  15,
+                    "continuity_integrity":  20,
+                    "evidence_integrity":  20,
+                    "production_contract_quality":  15,
+                    "qc_quality":  15,
+                    "actionability":  10,
+                    "output_structure":  5
+                },
+    "hard_fail_conditions":  [
+                                 "Invents unsupported facts or performance metrics.",
+                                 "Promotes a character claim into external truth without justification.",
+                                 "Treats belief as knowledge or external fact.",
+                                 "Allows a character to act on information they have not acquired.",
+                                 "Collapses materially independent compound claims into one truth state.",
+                                 "Treats resemblance or presence as confirmed identity without sufficient support.",
+                                 "Uses missing records as proof of non-occurrence without establishing source completeness and search scope.",
+                                 "Counts repeated reports from the same origin as independent corroboration.",
+                                 "Presents derived evidence as direct observation.",
+                                 "Ignores a broken critical evidence dependency.",
+                                 "Promotes generated output directly into locked canon.",
+                                 "Returns PASS for a QC category that was not checked.",
+                                 "Returns FINAL_APPROVED while a mandatory QC scope is NOT_CHECKED.",
+                                 "Ignores a locked continuity contradiction in FINAL production.",
+                                 "Recommends broad regeneration when a smaller validated correction unit is available without explaining why."
+                             ],
+    "cases":  [
+                  {
+                      "id":  "story-001",
+                      "category":  "story_intelligence",
+                      "title":  "Concept qualification",
+                      "input":  "A creator wants a 40-episode vertical drama about a woman who discovers that her late father secretly left the company to someone else. Evaluate whether the concept is ready for development.",
+                      "expected":  [
+                                       "Identifies protagonist desire.",
+                                       "Identifies conflict and stakes.",
+                                       "Evaluates serial engine.",
+                                       "Evaluates escalation capacity.",
+                                       "Distinguishes weaknesses from recommendations.",
+                                       "Returns an explicit Greenlight decision."
+                                   ],
+                      "must_not":  [
+                                       "Invent audience retention numbers.",
+                                       "Invent market demand statistics.",
+                                       "Claim guaranteed virality."
+                                   ]
+                  },
+                  {
+                      "id":  "story-002",
+                      "category":  "story_intelligence",
+                      "title":  "Story obligation tracking",
+                      "input":  "Episode 3 promises that Maya will reveal who altered the will. Episodes 4 through 9 never mention it. Episode 10 introduces a completely new mystery. Analyze the structural problem.",
+                      "expected":  [
+                                       "Identifies the unresolved promise as a story obligation.",
+                                       "Distinguishes obligation priority.",
+                                       "Flags story debt or aging obligation.",
+                                       "Recommends payoff, explicit deferral, reinforcement, or transformation."
+                                   ],
+                      "must_not":  [
+                                       "Ignore the Episode 3 promise.",
+                                       "Treat the new mystery as automatically replacing the old obligation."
+                                   ]
+                  },
+                  {
+                      "id":  "continuity-001",
+                      "category":  "continuity_integrity",
+                      "title":  "Knowledge continuity",
+                      "input":  "Anna has never been told that David is her brother. In Episode 8 she says, \u0027You are my brother, so I know why you did this.\u0027 No prior scene establishes that she learned this information.",
+                      "expected":  [
+                                       "Flags KNOWLEDGE_STATE_VIOLATION.",
+                                       "Explains that Anna acts on unavailable knowledge.",
+                                       "Identifies the missing acquisition event.",
+                                       "Recommends either adding a valid acquisition route or changing the line."
+                                   ],
+                      "must_not":  [
+                                       "Treat Anna\u0027s knowledge as valid because the external truth is true."
+                                   ]
+                  },
+                  {
+                      "id":  "continuity-002",
+                      "category":  "continuity_integrity",
+                      "title":  "Belief versus knowledge",
+                      "input":  "Marcus strongly believes Nora caused the fire, but the truth remains unresolved. Generate a continuity assessment.",
+                      "expected":  [
+                                       "Keeps Marcus\u0027s belief separate from external truth.",
+                                       "Uses a belief confidence state.",
+                                       "Allows belief-driven behavior.",
+                                       "Does not promote the belief into canon."
+                                   ],
+                      "must_not":  [
+                                       "State that Nora definitely caused the fire."
+                                   ]
+                  },
+                  {
+                      "id":  "continuity-003",
+                      "category":  "continuity_integrity",
+                      "title":  "Physical state consequence",
+                      "input":  "Marcus has an active severe left-shoulder injury. In the generated scene he lifts a heavy suitcase overhead with his left arm.",
+                      "expected":  [
+                                       "Flags PHYSICAL_STATE_CONFLICT or STATE_BEHAVIOR_CONFLICT.",
+                                       "Connects state to behavioral consequence.",
+                                       "Identifies the action beat as a likely correction unit.",
+                                       "Preserves unrelated passing scene elements."
+                                   ],
+                      "must_not":  [
+                                       "Recommend regenerating the entire season."
+                                   ]
+                  },
+                  {
+                      "id":  "continuity-004",
+                      "category":  "continuity_integrity",
+                      "title":  "Prop ownership continuity",
+                      "input":  "The locked continuity state says PROP_WATCH_001 is held by Maya after Episode 6. In Episode 7 a stranger is suddenly wearing the same watch with no transfer event.",
+                      "expected":  [
+                                       "Flags PROP_OWNERSHIP_VIOLATION.",
+                                       "Identifies missing transfer or explanation.",
+                                       "Distinguishes prop identity from a similar-looking object."
+                                   ],
+                      "must_not":  [
+                                       "Assume the transfer happened offscreen without marking it as an assumption."
+                                   ]
+                  },
+                  {
+                      "id":  "continuity-005",
+                      "category":  "continuity_integrity",
+                      "title":  "Temporal scope",
+                      "input":  "Verified security footage shows Daniel alive on March 4, 2023. A character concludes this proves Daniel is alive today.",
+                      "expected":  [
+                                       "Flags TEMPORAL_SCOPE_VIOLATION.",
+                                       "Preserves the 2023 temporal scope.",
+                                       "States that historical survival does not establish current survival."
+                                   ],
+                      "must_not":  [
+                                       "State that Daniel is currently alive."
+                                   ]
+                  },
+                  {
+                      "id":  "claim-001",
+                      "category":  "evidence_integrity",
+                      "title":  "Claim versus fact",
+                      "input":  "Marcus says, \u0027Nora started the fire.\u0027 No independent evidence establishes this. Analyze the information state.",
+                      "expected":  [
+                                       "Records the statement as a claim.",
+                                       "Attributes the claim to Marcus.",
+                                       "Keeps corroboration unresolved or unverified.",
+                                       "Separates claim from external truth."
+                                   ],
+                      "must_not":  [
+                                       "Write \u0027Nora started the fire\u0027 as an established fact."
+                                   ]
+                  },
+                  {
+                      "id":  "compound-claim-001",
+                      "category":  "evidence_integrity",
+                      "title":  "Compound claim decomposition",
+                      "input":  "A witness says, \u0027Nora started the fire and escaped through the east stairwell.\u0027 Video proves a woman escaped through the east stairwell but does not show who started the fire.",
+                      "expected":  [
+                                       "Decomposes the statement into at least two subclaims.",
+                                       "Evaluates escape evidence separately from arson evidence.",
+                                       "Does not transfer support from one subclaim to the other."
+                                   ],
+                      "must_not":  [
+                                       "Treat proof of escape as proof of arson.",
+                                       "Collapse the entire statement into CORROBORATED."
+                                   ],
+                      "violation_code":  "COMPOUND_CLAIM_COLLAPSE"
+                  },
+                  {
+                      "id":  "identity-001",
+                      "category":  "evidence_integrity",
+                      "title":  "Presence versus identity",
+                      "input":  "Blurry footage shows a woman with similar hair and height to Nora. No face is visible. A character says, \u0027That must be Nora.\u0027",
+                      "expected":  [
+                                       "Separates observed presence from identity interpretation.",
+                                       "Uses POSSIBLE_MATCH or LIKELY_MATCH rather than IDENTIFIED unless stronger evidence exists.",
+                                       "Allows character suspicion while preserving external uncertainty."
+                                   ],
+                      "must_not":  [
+                                       "State that Nora is definitively the woman in the footage."
+                                   ],
+                      "violation_code":  "IDENTITY_OVERCLAIM"
+                  },
+                  {
+                      "id":  "identity-002",
+                      "category":  "evidence_integrity",
+                      "title":  "Voice identity uncertainty",
+                      "input":  "A distorted phone recording sounds similar to David. There is no verified voiceprint or independent confirmation.",
+                      "expected":  [
+                                       "Treats voice identity as uncertain.",
+                                       "Uses an explicit identity confidence state.",
+                                       "Separates similarity from identification."
+                                   ],
+                      "must_not":  [
+                                       "Mark David as IDENTIFIED solely from subjective similarity."
+                                   ]
+                  },
+                  {
+                      "id":  "negative-001",
+                      "category":  "evidence_integrity",
+                      "title":  "Negative evidence with incomplete source",
+                      "input":  "Police search one partial hospital database and find no record of Daniel. A detective concludes Daniel was never admitted to any hospital.",
+                      "expected":  [
+                                       "Checks source completeness.",
+                                       "Limits inference to the searched database and scope.",
+                                       "Flags NEGATIVE_EVIDENCE_OVERCLAIM or SOURCE_COMPLETENESS_UNKNOWN.",
+                                       "Identifies alternative hospitals or records as unresolved possibilities."
+                                   ],
+                      "must_not":  [
+                                       "Conclude Daniel was never admitted anywhere."
+                                   ]
+                  },
+                  {
+                      "id":  "negative-002",
+                      "category":  "evidence_integrity",
+                      "title":  "Supported negative evidence",
+                      "input":  "A complete carrier log for Marcus\u0027s phone covers the full relevant period and shows no outgoing call. What can be concluded?",
+                      "expected":  [
+                                       "Recognizes stronger negative evidence because source completeness and temporal scope are established.",
+                                       "Concludes no outgoing call was made from that phone during the checked period.",
+                                       "Keeps alternative communication channels separate."
+                                   ],
+                      "must_not":  [
+                                       "Conclude Marcus contacted nobody by any method."
+                                   ]
+                  },
+                  {
+                      "id":  "dependency-001",
+                      "category":  "evidence_integrity",
+                      "title":  "Broken evidence dependency",
+                      "input":  "Evidence B is a transcript derived entirely from Audio A. Audio A is later shown to be corrupted. A conclusion relies primarily on Evidence B.",
+                      "expected":  [
+                                       "Marks Evidence B as dependent on Audio A.",
+                                       "Marks the dependency QUESTIONED or BROKEN.",
+                                       "Re-evaluates downstream conclusions.",
+                                       "Flags DEPENDENCY_INTEGRITY_FAILURE when critical."
+                                   ],
+                      "must_not":  [
+                                       "Continue treating Evidence B as independently valid."
+                                   ]
+                  },
+                  {
+                      "id":  "dependency-002",
+                      "category":  "evidence_integrity",
+                      "title":  "False independent corroboration",
+                      "input":  "Three news articles repeat the same unnamed witness statement from one original report. The investigator counts them as three independent confirmations.",
+                      "expected":  [
+                                       "Traces source lineage.",
+                                       "Identifies the three reports as repeated-source evidence.",
+                                       "Rejects the count as independent corroboration."
+                                   ],
+                      "must_not":  [
+                                       "Treat the three articles as three independent sources."
+                                   ],
+                      "violation_code":  "FALSE_INDEPENDENT_CORROBORATION"
+                  },
+                  {
+                      "id":  "derived-001",
+                      "category":  "evidence_integrity",
+                      "title":  "Derived evidence source preservation",
+                      "input":  "A timeline chart is calculated from several witness timestamps. The chart is later described as direct observation of when the suspect arrived.",
+                      "expected":  [
+                                       "Labels the chart as DERIVED evidence.",
+                                       "Preserves source lineage.",
+                                       "Separates calculation from direct observation.",
+                                       "Flags source-loss if presented as direct evidence."
+                                   ],
+                      "must_not":  [
+                                       "Describe the calculated chart as direct observation."
+                                   ]
+                  },
+                  {
+                      "id":  "production-001",
+                      "category":  "production_contract_quality",
+                      "title":  "Must Preserve Flexible Forbidden",
+                      "input":  "Create a scene contract where Anna confronts David. Anna must remain distrustful, David must not reveal his motive, exact wording may vary, and Anna\u0027s red coat must stay consistent.",
+                      "expected":  [
+                                       "Places distrust and coat continuity under Must Preserve.",
+                                       "Places exact wording under Flexible.",
+                                       "Places motive reveal under Forbidden.",
+                                       "Defines a clear required outcome."
+                                   ],
+                      "must_not":  [
+                                       "Treat all production details as equally locked."
+                                   ]
+                  },
+                  {
+                      "id":  "production-002",
+                      "category":  "production_contract_quality",
+                      "title":  "Prototype versus final",
+                      "input":  "A creator wants to test a scene using draft character references before final design approval.",
+                      "expected":  [
+                                       "Allows PROTOTYPE mode with explicit risks.",
+                                       "Does not treat draft assets as locked assets.",
+                                       "Does not grant FINAL readiness solely because the prototype can run."
+                                   ],
+                      "must_not":  [
+                                       "Return FINAL_APPROVED."
+                                   ]
+                  },
+                  {
+                      "id":  "qc-001",
+                      "category":  "qc_quality",
+                      "title":  "Missing visual evidence",
+                      "input":  "Review a generated scene for visual identity consistency, but only the script and dialogue transcript are available. No image, storyboard, or video is provided.",
+                      "expected":  [
+                                       "Marks visual identity QC as NOT_CHECKED.",
+                                       "Explains that visual evidence is unavailable.",
+                                       "May still evaluate text-based scopes separately."
+                                   ],
+                      "must_not":  [
+                                       "Return PASS for visual identity continuity."
+                                   ]
+                  },
+                  {
+                      "id":  "qc-002",
+                      "category":  "qc_quality",
+                      "title":  "Scoped QC versus final approval",
+                      "input":  "Dialogue and story continuity pass. Visual, audio, and technical QC have not been performed. The production mode is FINAL.",
+                      "expected":  [
+                                       "May return PASS_FOR_SCOPE for inspected scopes.",
+                                       "Leaves visual, audio, and technical scopes NOT_CHECKED.",
+                                       "Returns NOT_ELIGIBLE_FOR_FINAL_APPROVAL."
+                                   ],
+                      "must_not":  [
+                                       "Return FINAL_APPROVED."
+                                   ]
+                  },
+                  {
+                      "id":  "qc-003",
+                      "category":  "qc_quality",
+                      "title":  "Root cause and targeted correction",
+                      "input":  "The generated scene reveals the villain too early. Investigation shows the Episode Contract itself incorrectly required the villain reveal.",
+                      "expected":  [
+                                       "Identifies the visible failure location separately from root cause location.",
+                                       "Classifies root cause as STORY_SPEC or PRODUCTION_CONTRACT.",
+                                       "Recommends fixing the upstream contract before regeneration.",
+                                       "Marks affected downstream artifacts STALE, INVALID, or REVIEW_REQUIRED as appropriate."
+                                   ],
+                      "must_not":  [
+                                       "Recommend repeated regeneration using the same incorrect contract."
+                                   ]
+                  },
+                  {
+                      "id":  "blind-regression-001",
+                      "category":  "qc_quality",
+                      "title":  "Correction must not reintroduce diagnosed violation",
+                      "input":  "An audit correctly identifies that incomplete parking records cannot prove Marcus remained absent after 22:18. The corrected scene then says, \u0027Marcus was already gone at 22:41.\u0027 Evaluate the correction.",
+                      "expected":  [
+                                       "Re-checks the corrected output against the original diagnosed violations.",
+                                       "Detects that the correction reintroduces the negative-evidence overclaim.",
+                                       "Rejects or revises the correction before approval.",
+                                       "Applies regression control using MUST FIX, MUST PRESERVE, and MUST NOT INTRODUCE constraints."
+                                   ],
+                      "must_not":  [
+                                       "Approve a corrected output that reintroduces an already diagnosed violation.",
+                                       "Treat the corrected version as valid merely because a correction was attempted."
+                                   ],
+                      "violation_code":  "REGRESSION_REINTRODUCED"
+                  },
+                  {
+                      "id":  "blind-regression-002",
+                      "category":  "continuity_integrity",
+                      "title":  "Closed vocabulary enforcement",
+                      "input":  "The defined belief confidence vocabulary is UNAWARE, DOUBTFUL, SUSPICIOUS, LEANING, CONVINCED, and DISPROVEN. A proposed state update changes Lena from CONVINCED to UNCERTAIN.",
+                      "expected":  [
+                                       "Treats the defined status vocabulary as a closed set.",
+                                       "Rejects UNCERTAIN because it is not an allowed belief confidence state.",
+                                       "Selects an allowed state only when supported by the evidence and causal transition.",
+                                       "Preserves the existing state if no valid replacement is justified."
+                                   ],
+                      "must_not":  [
+                                       "Invent a new belief confidence status.",
+                                       "Silently extend the controlled vocabulary."
+                                   ],
+                      "violation_code":  "VOCABULARY_DRIFT"
+                  },
+                  {
+                      "id":  "blind-regression-003",
+                      "category":  "qc_quality",
+                      "title":  "Final approval gate termination",
+                      "input":  "A FINAL-mode scene has story and evidence QC results, but visual, audio, technical, and other mandatory final scopes remain NOT_CHECKED. The audit correctly determines NOT_ELIGIBLE_FOR_FINAL_APPROVAL and then also returns FINAL_REJECTED.",
+                      "expected":  [
+                                       "Returns NOT_ELIGIBLE_FOR_FINAL_APPROVAL.",
+                                       "Stops the Final Approval Gate when eligibility requirements are not satisfied.",
+                                       "Distinguishes failure to qualify for final approval from entering the gate and receiving FINAL_REJECTED.",
+                                       "Keeps unavailable mandatory scopes as NOT_CHECKED."
+                                   ],
+                      "must_not":  [
+                                       "Return FINAL_APPROVED.",
+                                       "Return FINAL_REJECTED after determining NOT_ELIGIBLE_FOR_FINAL_APPROVAL.",
+                                       "Convert NOT_CHECKED scopes into FAIL merely to produce a final decision."
+                                   ],
+                      "violation_code":  "FINAL_GATE_STATE_CONFLICT"
+                  },
+                  {
+                      "id":  "blind-regression-004",
+                      "category":  "qc_quality",
+                      "title":  "Root cause attribution before generation blame",
+                      "input":  "A generated scene violates character knowledge boundaries and evidence constraints. It is not yet established whether those constraints were correctly encoded in the upstream Production Contract. Determine the root cause.",
+                      "expected":  [
+                                       "Separates the visible failure location from the root cause location.",
+                                       "Checks whether the Production Contract contained the required constraints before assigning GENERATION as the sole root cause.",
+                                       "Uses PRODUCTION_CONTRACT when required constraints were missing or incorrect.",
+                                       "Uses GENERATION when a valid upstream contract existed and the generated output violated it.",
+                                       "Uses UNKNOWN or an appropriately qualified diagnosis when the upstream contract cannot be inspected."
+                                   ],
+                      "must_not":  [
+                                       "Assign GENERATION as the sole root cause without checking or qualifying the upstream contract state.",
+                                       "Assume the Production Contract was correct without evidence."
+                                   ],
+                      "violation_code":  "ROOT_CAUSE_PREMATURE_ATTRIBUTION"
+                  },
+                  {
+                      "id":  "blind-regression-005",
+                      "category":  "qc_quality",
+                      "title":  "Primary root cause must be separated from downstream manifestation",
+                      "input":  "A generated scene contains an evidence overclaim. Inspection shows that the upstream Production Contract omitted the required evidence constraint. The generated output then expresses the unsupported claim. Determine the root cause.",
+                      "expected":  [
+                                       "Identifies the earliest supported failure point as the primary root cause.",
+                                       "Uses PRODUCTION_CONTRACT as the primary root cause when the required constraint was missing or incorrect upstream.",
+                                       "Treats GENERATION as a downstream manifestation when the generated output reflects an upstream contract defect.",
+                                       "Uses GENERATION as the primary root cause only when the upstream Production Contract was valid, sufficient, and the generated output still violated it.",
+                                       "Separates primary root cause from downstream failure location or manifestation."
+                                   ],
+                      "must_not":  [
+                                       "Assign PRODUCTION_CONTRACT and GENERATION as co-equal root causes when the upstream contract defect is the earliest supported failure point.",
+                                       "Use GENERATION as a primary root cause merely because the visible defect appears in generated output.",
+                                       "Collapse primary root cause and downstream manifestation into one undifferentiated attribution."
+                                   ],
+                      "violation_code":  "ROOT_CAUSE_DOUBLE_ATTRIBUTION"
+                  },
+                  {
+                      "id":  "blind-regression-006",
+                      "category":  "qc_quality",
+                      "title":  "Correction must not self-certify unsupported inference",
+                      "input":  "A correction replaces an unsupported factual claim with new dialogue that still introduces an interpretive inference beyond the character\u0027s established knowledge. The audit labels the dialogue as an inference and automatically marks it PASS. Evaluate the correction.",
+                      "expected":  [
+                                       "Evaluates the corrected dialogue itself against evidence, knowledge, belief, and interpretation boundaries.",
+                                       "Recognizes that labeling a statement as an inference in the audit does not automatically make the in-scene assertion valid.",
+                                       "Rejects or qualifies a corrected assertion when the character lacks sufficient support to state the inference at that level of certainty.",
+                                       "Requires the correction to preserve uncertainty when the evidence supports only an unresolved interpretation.",
+                                       "Re-runs regression checks against newly introduced claims and interpretations before approval."
+                                   ],
+                      "must_not":  [
+                                       "Mark unsupported corrected dialogue PASS merely because the audit labels it as an inference.",
+                                       "Allow analysis metadata to substitute for uncertainty or attribution inside the corrected scene.",
+                                       "Approve a correction that introduces a new unsupported interpretation while resolving an earlier violation."
+                                   ],
+                      "violation_code":  "CORRECTION_UNSUPPORTED_INFERENCE"
+                  },
+                  {
+                      "id":  "blind-regression-007",
+                      "category":  "continuity_integrity",
+                      "title":  "Accusation must not automatically become knowledge",
+                      "input":  "A character with a SUSPICIOUS belief says, \u0027You stole it!\u0027 The accusation is emotionally consistent with the character\u0027s suspicion, but the available evidence does not establish guilt. Evaluate whether the declarative accusation itself must automatically be treated as character knowledge.",
+                      "expected":  [
+                                       "distinguish dialogue surface form from epistemic status",
+                                       "allow belief-driven accusatory dialogue when consistent with the character\u0027s established belief and emotional state",
+                                       "do not automatically classify a declarative accusation as character knowledge merely because it is phrased as a factual statement",
+                                       "preserve the distinction between accusation, belief, knowledge, story truth, canon, and production requirement",
+                                       "reject any downstream production contract or QC step that promotes the accusation into established character knowledge or story truth without support",
+                                       "evaluate surrounding context and system treatment before determining whether an accusation is a knowledge overclaim"
+                                   ],
+                      "must_not":  [
+                                       "treat every declarative accusation as a KNOWLEDGE_STATE_VIOLATION",
+                                       "infer character knowledge solely from the grammatical form of dialogue",
+                                       "promote a belief-driven accusation into knowledge, truth, canon, or production truth without supporting evidence",
+                                       "forbid dramatically strong accusations merely because the character is not CONVINCED"
+                                   ],
+                      "violation_code":  "ACCUSATION_KNOWLEDGE_CONFLATION"
+                  },
+                  {
+                      "id":  "blind-regression-008",
+                      "category":  "qc_quality",
+                      "title":  "Final approval requires complete mandatory QC scope coverage",
+                      "input":  "A production is in FINAL mode. Story, knowledge, belief, evidence, scene, and Production Contract checks all PASS. However, rendered video, actor performance, facial identity, wardrobe, prop appearance, audio, subtitles, edit timing, and delivery encode are unavailable and therefore have not been checked. Determine whether the production is eligible for FINAL_APPROVED.",
+                      "expected":  [
+                                       "distinguish scoped QC success from final production approval",
+                                       "identify unavailable mandatory FINAL-mode QC scopes as NOT_CHECKED",
+                                       "carry mandatory NOT_CHECKED scopes into the Final Approval gate",
+                                       "allow PASS_FOR_SCOPE for the scopes that were actually checked",
+                                       "return NOT_ELIGIBLE_FOR_FINAL_APPROVAL while mandatory FINAL-mode scopes remain NOT_CHECKED",
+                                       "require mandatory visual, performance, audio, edit, subtitle, and delivery scopes to be checked before FINAL_APPROVED when they materially apply"
+                                   ],
+                      "must_not":  [
+                                       "treat PASS on story or text scopes as sufficient for final production approval",
+                                       "silently omit unavailable mandatory scopes from the Final Approval gate",
+                                       "return FINAL_APPROVED while required FINAL-mode scopes remain NOT_CHECKED",
+                                       "declare eligibility for final approval merely because all currently evaluated scopes passed"
+                                   ],
+                      "violation_code":  "FINAL_SCOPE_COMPLETENESS_FAILURE"
+                  },
+                  {
+                      "id":  "blind-regression-009",
+                      "category":  "production_contract_quality",
+                      "title":  "Semantically protected bluff must not require redundant contract labeling",
+                      "input":  "A character deliberately bluffs by saying \u0027I know you stole it\u0027 and \u0027I have proof\u0027 even though the character does not actually know who committed the act and does not possess the claimed proof. The Production Contract already states that the dialogue may be a bluff, actual character knowledge must remain unchanged, the claimed evidence must not become actual evidence, story truth must remain unchanged, and uncertainty must be preserved. Determine whether the contract must be revised merely because it does not additionally use a specific label such as BELIEF-DRIVEN ACCUSATION or corroboration_status: UNVERIFIED.",
+                      "expected":  [
+                                       "recognize that deliberate bluffing may contain surface knowledge or evidence claims without updating actual character knowledge",
+                                       "preserve the difference between spoken claim, actual knowledge, actual evidence, and story truth",
+                                       "treat semantic protection in the existing Production Contract as sufficient when the required epistemic and truth boundaries are already preserved",
+                                       "not require redundant exact wording or a specific implementation label merely to make the bluff valid",
+                                       "allow the Production Contract to pass when it already preserves knowledge, belief, evidence truth, story truth, and uncertainty",
+                                       "avoid inventing mandatory schema fields that are not required by the skill"
+                                   ],
+                      "must_not":  [
+                                       "require Production Contract revision solely because a specific label such as BELIEF-DRIVEN ACCUSATION is absent",
+                                       "require corroboration_status: UNVERIFIED as a mandatory field when the semantic distinction is already preserved",
+                                       "treat spoken bluff claims as automatic knowledge updates",
+                                       "treat claimed evidence as actual evidence",
+                                       "promote the bluff into story truth or production truth",
+                                       "confuse semantic sufficiency with mandatory exact wording"
+                                   ],
+                      "violation_code":  "BLUFF_CONTRACT_OVERCONSTRAINT"
+                  }
+              ,
+                  {
+                      "id":  "blind-regression-010",
+                      "category":  "production_contract_quality",
+                      "title":  "Semantically sufficient Production Contract must not be retroactively blamed for generation failure",
+                      "input":  "A Production Contract already explicitly prohibits account identity from being treated as human identity, requires physical presence not be established without additional evidence, preserves uncertainty about the operator, and forbids invented identifying evidence. Generated dialogue nevertheless states that an authorized person was definitely the operator. Determine the Primary Root Cause and whether Production Contract revision is required.",
+                      "expected":  [
+                                       "recognize the existing Production Contract as semantically sufficient when it already contains the required identity and evidence boundary",
+                                       "attribute the earliest supported failure to GENERATION when generated output violates a valid and sufficiently specific Production Contract",
+                                       "use PRODUCTION_CONTRACT as Primary Root Cause only when the upstream contract was missing, incorrect, ambiguous, or internally contradictory",
+                                       "avoid retroactively declaring a sufficient Production Contract insufficient merely because generated output violated it",
+                                       "avoid requiring redundant Production Contract wording solely to move the root cause upstream"
+                                   ],
+                      "must_not":  [
+                                       "assign PRODUCTION_CONTRACT as Primary Root Cause when the inspected contract is valid, sufficiently specific, and already contains the violated constraint",
+                                       "reinterpret an explicit upstream prohibition as ambiguous solely because generation ignored it",
+                                       "require Production Contract revision solely to restate a semantic boundary that is already protected",
+                                       "report GENERATION merely as a Downstream Manifestation when no upstream Production Contract defect exists"
+                                   ],
+                      "violation_code":  "SEMANTIC_CONTRACT_ROOT_CAUSE_MISATTRIBUTION"
+                  }]
+}
+
+
