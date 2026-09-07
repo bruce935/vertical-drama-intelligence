@@ -1,4 +1,4 @@
-﻿# Continuity System
+# Continuity System
 
 Version: 0.4
 

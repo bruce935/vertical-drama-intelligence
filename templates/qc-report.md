@@ -1,4 +1,4 @@
-﻿# QC Report Template
+# QC Report Template
 
 Version: 0.4
 

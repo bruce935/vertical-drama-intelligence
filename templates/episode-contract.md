@@ -1,4 +1,4 @@
-﻿# Episode Contract Template
+# Episode Contract Template
 
 Version: 0.4
 

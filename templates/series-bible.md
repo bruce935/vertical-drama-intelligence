@@ -1,4 +1,4 @@
-﻿# Series Bible Template
+# Series Bible Template
 
 Version: 0.4
 

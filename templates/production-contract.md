@@ -1,4 +1,4 @@
-﻿# Production Contract Template
+# Production Contract Template
 
 Version: 0.4
 

@@ -1,4 +1,4 @@
-﻿# Example 02 — Continuity Diagnosis
+# Example 02 — Continuity Diagnosis
 
 Version: 0.4
 

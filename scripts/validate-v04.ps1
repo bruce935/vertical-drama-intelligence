@@ -1,4 +1,4 @@
-﻿$ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Stop"
 
 Write-Host ""
 Write-Host "Vertical Drama Intelligence V0.4 Validation"

@@ -1,4 +1,4 @@
-﻿# Story Intelligence
+# Story Intelligence
 
 Version: 0.4
 

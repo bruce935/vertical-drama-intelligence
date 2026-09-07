@@ -1,4 +1,4 @@
-﻿# Example 01 — Concept Greenlight
+# Example 01 — Concept Greenlight
 
 Version: 0.4
 

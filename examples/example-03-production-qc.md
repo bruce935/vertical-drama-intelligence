@@ -1,4 +1,4 @@
-﻿# Example 03 — Production QC
+# Example 03 — Production QC
 
 Version: 0.4
 

@@ -1,4 +1,4 @@
-﻿# Scripts
+# Scripts
 
 Validation utilities for **Vertical Drama Intelligence**.
 

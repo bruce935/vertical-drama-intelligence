@@ -1,4 +1,4 @@
-﻿# Production Contracts
+# Production Contracts
 
 Version: 0.4
 

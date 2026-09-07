@@ -1,4 +1,4 @@
-﻿# Blind Run #008 Closure Record
+# Blind Run #008 Closure Record
 
 Date: 2026-09-07
 Status: CLOSED

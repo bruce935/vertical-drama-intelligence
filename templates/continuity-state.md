@@ -1,4 +1,4 @@
-﻿# Continuity State Template
+# Continuity State Template
 
 Version: 0.4
 

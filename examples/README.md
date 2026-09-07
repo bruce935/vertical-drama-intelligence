@@ -1,4 +1,4 @@
-﻿# Examples
+# Examples
 
 Version: 0.4
 
