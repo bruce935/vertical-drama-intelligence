@@ -1,4 +1,4 @@
-﻿---
+---
 name: vertical-drama-intelligence
 description: Develop, evaluate, structure, continuity-check, and production-plan serialized vertical dramas. Use when a user wants to create, adapt, analyze, improve, or production-plan a vertical drama, microdrama, short-drama series, AI drama, manga-drama, serialized short-form story, or multi-episode narrative. Use for concept greenlight, series bibles, season and episode architecture, hooks, reveals, cliffhangers, story obligations, character and knowledge continuity, evidence-aware mystery logic, production contracts, prototype and final production readiness, QC, targeted regeneration, and long-running series state management. Do not use merely for generic one-off creative writing unless serialized drama structure, continuity, evidence reasoning, or production planning is materially relevant.
 ---
