@@ -1,4 +1,4 @@
-﻿# Vertical Drama Intelligence
+# Vertical Drama Intelligence
 
 **An Agent Skill for building serialized vertical dramas with story intelligence, continuity control, evidence-aware reasoning, production contracts, and production QC.**
 
