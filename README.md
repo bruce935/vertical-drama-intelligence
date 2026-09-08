@@ -1,5 +1,7 @@
 # Vertical Drama Intelligence
 
+[![skills.sh](https://skills.sh/b/bruce935/vertical-drama-intelligence)](https://skills.sh/bruce935/vertical-drama-intelligence)
+
 **Stop your AI drama from forgetting its own story.**
 
 A free, open-source production system for serialized AI vertical drama: plan the series, control continuity, structure episodes, translate story intent into production requirements, and catch story drift before it spreads across the season.
@@ -15,7 +17,15 @@ A free, open-source production system for serialized AI vertical drama: plan the
 
 ## Quick Start
 
-Clone the repository or add it to an Agent Skills-compatible environment, then give your agent a real serialized-drama task.
+### Install with the Skills CLI
+
+```bash
+npx skills add bruce935/vertical-drama-intelligence --skill vertical-drama-intelligence
+```
+
+The Skills CLI supports multiple AI coding/agent environments and records anonymous install telemetry used by the skills.sh leaderboard.
+
+### Or clone the repository
 
 ```bash
 git clone https://github.com/bruce935/vertical-drama-intelligence.git
@@ -23,6 +33,8 @@ git clone https://github.com/bruce935/vertical-drama-intelligence.git
 
 Main Skill definition: `SKILL.md`  
 Skill-directory copy: `skills/vertical-drama-intelligence/SKILL.md`
+
+Then give your agent a real serialized-drama task.
 
 Example requests:
 
