@@ -1,13 +1,99 @@
 # Vertical Drama Intelligence
 
-**An Agent Skill for building serialized vertical dramas with story intelligence, continuity control, evidence-aware reasoning, production contracts, and production QC.**
+**Stop your AI drama from forgetting its own story.**
 
-> Turn a story idea into a production-ready serialized drama system — without losing track of truth, character knowledge, continuity, or production constraints.
+A free, open-source production system for serialized AI vertical drama: plan the series, control continuity, structure episodes, translate story intent into production requirements, and catch story drift before it spreads across the season.
 
+> Turn a rough story idea into a production-ready serialized drama system — without losing track of truth, character knowledge, continuity, or production constraints.
+
+**Community Edition:** Free & Open Source  
 **Release:** V0.4.1  
 **Core Architecture:** V0.4 — Frozen  
-**Status:** Public Preview  
 **License:** MIT
+
+---
+
+## Quick Start
+
+Clone the repository or add it to an Agent Skills-compatible environment, then give your agent a real serialized-drama task.
+
+```bash
+git clone https://github.com/bruce935/vertical-drama-intelligence.git
+```
+
+Main Skill definition: `SKILL.md`  
+Skill-directory copy: `skills/vertical-drama-intelligence/SKILL.md`
+
+Example requests:
+
+> Develop this rough idea into a vertical drama series. First evaluate whether it has enough story engine to sustain multiple episodes, then identify the protagonist desire, escalation path, hooks, unresolved obligations, and major continuity risks.
+
+> Check this episode against the existing story state. Flag anything the characters know without learning it, any inference being promoted to fact, and any contradiction with locked continuity.
+
+> Convert this episode into a Production Contract for AI video generation, then define what QC must verify and what may safely vary.
+
+---
+
+## The Problem It Solves
+
+Generating one AI scene is relatively easy. Maintaining a serialized story across many episodes is much harder.
+
+Common failures include:
+
+- a character suddenly knowing information they never learned;
+- a suspicion silently becoming established fact;
+- episode 7 contradicting episode 2;
+- unresolved promises disappearing from the story;
+- AI-generated output changing locked story facts;
+- visual or behavioral continuity drifting;
+- regenerating an entire scene when only one layer actually failed;
+- incomplete QC being treated as final approval.
+
+Vertical Drama Intelligence makes those states explicit and controllable.
+
+---
+
+## What You Can Do With It
+
+`ROUGH IDEA`
+
+↓
+
+`CONCEPT GREENLIGHT`
+
+↓
+
+`SERIES BIBLE`
+
+↓
+
+`EPISODE CONTRACT`
+
+↓
+
+`CONTINUITY STATE`
+
+↓
+
+`PRODUCTION CONTRACT`
+
+↓
+
+`GENERATION`
+
+↓
+
+`QC`
+
+↓
+
+`TARGETED REGENERATION`
+
+↓
+
+`STATE UPDATE`
+
+Use the full workflow or only the stages where structured reasoning is needed.
 
 ---
 
@@ -15,43 +101,11 @@
 
 Vertical Drama Intelligence is an Agent Skill for developing, evaluating, structuring, continuity-checking, and production-planning serialized vertical dramas.
 
-It is designed for:
+It is designed for vertical dramas, microdramas, short-drama series, AI-generated dramas, manga dramas, serialized short-form stories, and other multi-episode narrative projects.
 
-- vertical dramas,
-- microdramas,
-- short-drama series,
-- AI-generated dramas,
-- manga dramas,
-- serialized short-form stories,
-- and other multi-episode narrative projects.
-
-It is **not just a script generator**.
-
-The Skill acts as an intelligence layer between the story idea and the production process.
+It is **not just a script generator**. It acts as an intelligence layer between the story idea and the production process.
 
 It helps an AI agent reason about what the story means, what each character actually knows, what must remain consistent, what production is allowed to change, and whether generated output is ready to move forward.
-
----
-
-## Why It Exists
-
-Generating one scene with AI is relatively easy.
-
-Maintaining a serialized story across dozens of episodes is much harder.
-
-Long-running AI-assisted drama production can gradually introduce problems such as:
-
-- characters knowing information they never learned,
-- suspicion silently becoming established fact,
-- contradictions between episodes,
-- forgotten promises and unresolved story obligations,
-- evidence being interpreted more strongly than it supports,
-- production output changing locked story facts,
-- visual or behavioral continuity drifting,
-- failed scenes being regenerated without identifying the real cause,
-- and incomplete QC being mistaken for final approval.
-
-Vertical Drama Intelligence is designed to make those states explicit and controllable.
 
 ---
 
@@ -59,172 +113,59 @@ Vertical Drama Intelligence is designed to make those states explicit and contro
 
 ### Story Intelligence
 
-Evaluate whether a concept can sustain serialized drama and identify:
-
-- protagonist desire,
-- conflict,
-- stakes,
-- escalation capacity,
-- serial engine,
-- hooks,
-- reveals,
-- cliffhangers,
-- promises and payoffs,
-- story obligations,
-- and episode-to-episode pressure.
+Evaluate whether a concept can sustain serialized drama and identify protagonist desire, conflict, stakes, escalation capacity, serial engine, hooks, reveals, cliffhangers, promises/payoffs, story obligations, and episode-to-episode pressure.
 
 ### Continuity Intelligence
 
-Track state across the series, including:
-
-- story truth,
-- canon,
-- character knowledge,
-- character belief,
-- claims,
-- evidence,
-- relationships,
-- timeline,
-- physical state,
-- props,
-- locations,
-- mystery state,
-- and unresolved obligations.
+Track story truth, canon, character knowledge, character belief, claims, evidence, relationships, timeline, physical state, props, locations, mystery state, and unresolved obligations.
 
 ### Evidence-Aware Reasoning
 
-The Skill distinguishes between what is established and what is merely believed or inferred.
+The Skill distinguishes what is established from what is merely believed or inferred.
 
-Truth states include:
+Truth states:
 
 `CONFIRMED` · `OBSERVED` · `CALCULATED` · `INFERRED` · `ASSUMED` · `PENDING`
 
-This prevents a character accusation, suspicion, clue, or production artifact from automatically becoming story truth.
+A character accusation, suspicion, clue, or production artifact does not automatically become story truth.
 
 ### Production Contracts
 
-Translate story intent into production requirements.
-
-A Production Contract defines:
-
-- what must happen,
-- what must remain true,
-- what may vary,
-- what must not happen,
-- required assets,
-- model freedom,
-- continuity constraints,
-- and what QC must verify.
-
-A core rule is:
+Translate story intent into production requirements: what must happen, what must remain true, what may vary, what must not happen, required assets, model freedom, continuity constraints, and what QC must verify.
 
 > **Generated output does not own story truth.**
 
-### Production QC
+### Production QC & Targeted Regeneration
 
-Evaluate generated output against the actual production contract.
+Evaluate generated output against the Production Contract, identify continuity/knowledge/evidence/visual/behavioral failures, locate the failure layer, and make the smallest safe correction instead of blindly regenerating everything.
 
-QC can identify:
+Root-cause categories:
 
-- continuity violations,
-- unsupported reveals,
-- knowledge-state errors,
-- evidence errors,
-- missing required actions,
-- visual continuity failures,
-- behavioral inconsistencies,
-- incomplete verification,
-- and production-readiness problems.
-
-### Root-Cause Diagnosis
-
-When something fails, the Skill attempts to identify the actual failure layer instead of blindly regenerating everything.
-
-Root-cause categories include:
-
-`STORY_SPEC`  
-`CONTINUITY_STATE`  
-`PRODUCTION_CONTRACT`  
-`ASSET`  
-`MODEL_ADAPTER`  
-`GENERATION`  
-`EDIT`  
-`QC`  
-`UNKNOWN`
-
-This enables targeted correction and regeneration.
+`STORY_SPEC` · `CONTINUITY_STATE` · `PRODUCTION_CONTRACT` · `ASSET` · `MODEL_ADAPTER` · `GENERATION` · `EDIT` · `QC` · `UNKNOWN`
 
 ---
 
-## Core Architecture
+## A Small Example
 
-The current V0.4 architecture is organized around four major systems:
+Suppose episode 3 contains a clue that makes the protagonist suspicious of another character.
 
-**Story Intelligence**  
-→ determines what the story needs to do.
+A conventional generation workflow may accidentally write episode 4 as if the accusation were already proven.
 
-**Continuity System**  
-→ determines what is currently true, known, believed, established, and unresolved.
+Vertical Drama Intelligence keeps the states separate:
 
-**Production Contracts**  
-→ translate narrative intent into enforceable production requirements.
+```text
+OBSERVED: The protagonist saw the suspicious clue.
+INFERRED: The protagonist thinks Character B may be responsible.
+PENDING: Character B's actual responsibility is not established.
+```
 
-**QC & Targeted Regeneration**  
-→ determine whether generated output satisfies those requirements and what should be corrected when it does not.
-
-The architecture is currently frozen while the project moves into real production testing.
-
----
-
-## Typical Workflow
-
-A production workflow may look like this:
-
-`IDEA`
-
-↓  
-
-`CONCEPT GREENLIGHT`
-
-↓  
-
-`SERIES BIBLE`
-
-↓  
-
-`EPISODE CONTRACT`
-
-↓  
-
-`CONTINUITY STATE`
-
-↓  
-
-`PRODUCTION CONTRACT`
-
-↓  
-
-`GENERATION`
-
-↓  
-
-`QC`
-
-↓  
-
-`TARGETED REGENERATION`
-
-↓  
-
-`STATE UPDATE`
-
-The Skill can be used across the entire workflow or only at the stages where structured reasoning is needed.
+That distinction can then flow into the Episode Contract, Continuity State, Production Contract, and QC checks. Repetition does not turn an inference into truth.
 
 ---
 
 ## Source of Truth
 
-When multiple production artifacts disagree, the Skill uses an explicit precedence model:
+When production artifacts disagree:
 
 `USER-CONFIRMED TRUTH`
 
@@ -258,69 +199,15 @@ Lower-level generated output must not silently overwrite higher-level story trut
 
 ## Production Modes
 
-Vertical Drama Intelligence distinguishes between two production modes:
+**PROTOTYPE** is for experimentation, exploration, and incomplete production testing.
 
-### PROTOTYPE
-
-Used for experimentation, exploration, and incomplete production testing.
-
-Some evidence or production scopes may intentionally remain unchecked.
-
-### FINAL
-
-Used when determining whether output is eligible for final approval.
-
-Mandatory applicable QC scopes must be accounted for.
-
-If required evidence has not been checked, the correct state is:
-
-`NOT_ELIGIBLE_FOR_FINAL_APPROVAL`
-
-—not approval and not rejection.
+**FINAL** is for determining whether output is eligible for final approval. If required evidence has not been checked, the correct state is `NOT_ELIGIBLE_FOR_FINAL_APPROVAL` — not approval and not rejection.
 
 ---
 
-## Installation
+## Templates Included
 
-The main Skill definition is:
-
-`SKILL.md`
-
-For systems that use a Skill directory structure, the synchronized copy is available at:
-
-`skills/vertical-drama-intelligence/SKILL.md`
-
-Copy the Skill into the appropriate skills directory for your Agent or AI development environment.
-
-The Skill is designed to be model-agnostic. It does not require a specific language model or video generation model.
-
----
-
-## Usage
-
-Use the Skill when the task involves serialized narrative reasoning, continuity, production planning, or production QC.
-
-Example requests:
-
-> Develop this idea into a vertical drama series and determine whether the concept has enough story engine for 40 episodes.
-
-> Build a Series Bible and define what is canon, assumed, pending, and still unresolved.
-
-> Check whether this episode accidentally gives a character information they have not learned.
-
-> Convert this episode into a Production Contract for AI video generation.
-
-> Compare this generated scene against the Production Contract and identify the smallest safe correction.
-
-> Diagnose whether this failure comes from the story specification, continuity state, production contract, generation, or edit.
-
-The Skill should not be invoked merely for generic one-off creative writing when serialized structure, continuity reasoning, evidence control, or production planning is not materially relevant.
-
----
-
-## Templates
-
-The project includes production-oriented templates for:
+The Community Edition includes reusable templates for:
 
 - `series-bible.md`
 - `episode-contract.md`
@@ -328,54 +215,15 @@ The project includes production-oriented templates for:
 - `production-contract.md`
 - `qc-report.md`
 
-These templates turn the reasoning architecture into reusable production artifacts.
-
 ---
 
-## Examples
+## Worked Examples
 
-Three worked examples are currently included.
+Three examples are included:
 
-### Concept Greenlight
-
-`examples/example-01-concept-greenlight.md`
-
-Demonstrates how a minimal idea is evaluated for:
-
-- story engine,
-- protagonist pressure,
-- stakes,
-- escalation,
-- hooks,
-- obligations,
-- and development readiness.
-
-### Continuity Diagnosis
-
-`examples/example-02-continuity-diagnosis.md`
-
-Demonstrates how continuity failures are diagnosed by identifying:
-
-- what failed,
-- why it failed,
-- the root cause,
-- the smallest safe correction,
-- and what must be preserved.
-
-### Production QC
-
-`examples/example-03-production-qc.md`
-
-Demonstrates evaluation of generated output against a Production Contract, including:
-
-- preservation requirements,
-- flexible elements,
-- forbidden changes,
-- QC scope,
-- root cause,
-- targeted regeneration,
-- regression control,
-- and final approval eligibility.
+- `examples/example-01-concept-greenlight.md` — concept qualification, story engine, stakes, escalation, hooks, obligations, and readiness.
+- `examples/example-02-continuity-diagnosis.md` — what failed, why, root cause, smallest safe correction, and what must be preserved.
+- `examples/example-03-production-qc.md` — generated-output evaluation, QC scope, targeted regeneration, regression control, and approval eligibility.
 
 ---
 
@@ -397,7 +245,7 @@ Demonstrates evaluation of generated output against a Production Contract, inclu
 
 ## Validation
 
-V0.4.1 currently includes:
+V0.4.1 includes:
 
 | Validation Area | Result |
 |---|---:|
@@ -409,72 +257,48 @@ V0.4.1 currently includes:
 | Validator FAIL | 0 |
 | Overall | **PASS** |
 
-Regression testing covers areas including:
+Regression testing covers truth versus belief, accusation versus knowledge, evidence integrity, identity uncertainty, semantic contract sufficiency, root-cause attribution, bluff semantics, final QC completeness, approval eligibility, and decision consistency.
 
-- truth versus belief,
-- accusation versus knowledge,
-- evidence integrity,
-- identity uncertainty,
-- semantic contract sufficiency,
-- root-cause attribution,
-- bluff semantics,
-- final QC completeness,
-- approval eligibility,
-- and decision consistency.
+See `scripts/validate-v04.ps1` for the validator.
 
-See `scripts/validate-v04.ps1` for the current validator.
+---
+
+## Community Edition and Pro
+
+This repository is the **Community Edition** and remains free under the MIT License.
+
+For creators and small production teams that need a more complete production operating system, **Vertical Drama Intelligence Pro — Early Access** adds the full production workflow, expanded production templates/workspaces, complete case-study material, production readiness and season handoff, model-adapter guidance, and advanced QC/targeted-regeneration workflows.
+
+Learn about Pro at https://praxiory.com
+
+The Community Edition is intentionally useful on its own. Pro is for running the system more deeply on real productions rather than merely reading the methodology.
+
+---
+
+## Who It Is For
+
+Best suited to AI vertical-drama and microdrama creators, serialized short-form storytellers, and small AI production teams that use LLMs/agents together with video-generation tools.
+
+It is model-agnostic and is not an AI video model, one-click finished-drama generator, publishing platform, or guarantee of audience/retention performance.
 
 ---
 
 ## Current Status
 
-**V0.4.1** is the first release candidate prepared for public distribution.
+V0.4.1 is the public Community Edition. The core architecture is frozen while practical production evidence and user feedback are collected.
 
-The V0.4 core architecture is currently frozen.
-
-The immediate goal is no longer to add more abstractions. The next phase is to test the Skill against real vertical-drama production workflows and determine which failures are architectural and which are model/runtime limitations.
-
----
-
-## Roadmap
-
-### Current
-
-- Freeze V0.4 architecture
-- Complete regression hardening
-- Prepare public repository
-- Publish V0.4.1
-
-### Next
-
-- Run real vertical-drama production tests
-- Evaluate long-series continuity behavior
-- Test production contracts against real generation workflows
-- Collect failure cases from practical use
-- Improve documentation and installation examples
-
-### Future V0.5
-
-V0.5 should be driven primarily by real production evidence rather than additional theoretical architecture.
-
-Fundamental architecture changes should only be introduced when production testing demonstrates that the current system cannot safely represent or resolve a real class of failure.
+Future architecture changes should be driven by real production failures rather than additional theoretical complexity.
 
 ---
 
 ## Design Principle
 
-Vertical Drama Intelligence follows a simple development philosophy:
-
 **Evidence → Method → Original Implementation**
 
-Research can inform the method.
-
-The implementation should remain original, explicit, testable, and production-oriented.
+Research can inform the method. The implementation should remain original, explicit, testable, and production-oriented.
 
 ---
 
 ## License
 
-MIT License.
-
-See `LICENSE` for details.
+MIT License. See `LICENSE` for details.
